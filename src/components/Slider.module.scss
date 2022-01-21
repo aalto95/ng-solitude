@@ -1,11 +1,37 @@
+.container {
+  width: 100vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blocker {
+  height: 100%;
+  width: 20%;
+  background-color: #fff;
+  z-index: 2;
+}
+
 .slider {
   width: 60%;
-  height: 40%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-position: center;
-  background-size: cover;
+  overflow: hidden;
+
+  .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    height: 40%;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+  }
 
   .slideButton {
     width: 10%;
@@ -16,6 +42,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
+    z-index: 5;
+
+    .arrow {
+      background-color: #000;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      opacity: 30%;
+    }
   }
 
   .middleSection {
@@ -33,6 +72,21 @@
   margin: 10px;
 }
 
-h1 {
+h1,
+p {
   color: #fff;
+}
+
+.slideFadingToLeft {
+  z-index: 1;
+  transition: 1s;
+  visibility: hidden;
+  transform: translateX(-100%);
+}
+
+.slideFadingToRight {
+  z-index: 1;
+  transition: 1s;
+  visibility: hidden;
+  transform: translateX(100%);
 }
