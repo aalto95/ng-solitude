@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Slider from './components/Slider'
 
 function App() {
+  const mockData = [
+    {
+      image: "https://sun9-83.userapi.com/impg/IfI9YKFHmUsD4JgbtZb-ypJkHYQlgTm-7GmqDQ/EUnv3P-8ALY.jpg?size=2560x1920&quality=96&sign=8dda5b4a07127cc8bac6e7af68396ce6&type=album",
+      label: "yo",
+      paragraph: "hey",
+      slideId: 0,
+    },
+    {
+      image: "https://sun9-73.userapi.com/impg/1Ms6FrjnofAR2M7OcH58xwNW7OYBnVw1yPB83g/O-g6UWbxQiY.jpg?size=2048x2048&quality=96&sign=6656493467f16b3aebcf658a77a92635&type=album",
+      label: "yo",
+      paragraph: "hey",
+      slideId: 1,
+    },
+    {
+      image: "https://sun9-70.userapi.com/impg/chs7j7FOumnwuJ1xTQDnJ_fGRNRDabreLdWF9A/f997PEVwXOI.jpg?size=640x853&quality=96&sign=9f03d03bc1d5ead9d5a31b0a7a3d2c21&type=album",
+      label: "yo",
+      paragraph: "hey",
+      slideId: 1,
+    }
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Slider slides={mockData}/>
     </div>
   );
 }
