@@ -1,6 +1,6 @@
 html,
 body {
-  position: absolute;
+  overflow-x: hidden;
 }
 
 body {
