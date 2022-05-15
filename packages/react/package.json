@@ -1,5 +1,5 @@
 {
-  "name": "universal-slider-react",
+  "name": "@universal-slider/react",
   "version": "0.0.1",
   "private": false,
   "dependencies": {
