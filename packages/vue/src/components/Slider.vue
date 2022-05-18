@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from 'vue'
 import { ref, toRef } from 'vue'
 
 const props = defineProps({
@@ -46,14 +45,14 @@ function slideRight() {
           <p>{{slide.paragraph}}</p>
         </div>
         <button class='slideButton' @click="slideLeft()">
-          <img src='arrowLeft' alt="" class='arrow' />
+          <img src='../assets/left-icon.svg' alt="" class='arrow' />
         </button>
         <div class='middleSection' id="slider">
             <div v-bind:key="slide.label" v-for="slide in slidesRef" class='circle'>
             </div>
         </div>
         <button class='slideButton' @click="slideRight()">
-          <img src='arrowRight' alt="" class='arrow' />
+          <img src='../assets/right-icon.svg' alt="" class='arrow' />
         </button>
       </div>
       <div class='blocker'>
