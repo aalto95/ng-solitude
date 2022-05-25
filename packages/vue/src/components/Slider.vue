@@ -48,7 +48,7 @@ function slideRight() {
           <img src='../assets/left-icon.svg' alt="" class='arrow' />
         </button>
         <div class='middleSection' id="slider">
-            <div v-bind:key="slide.label" v-for="slide in slidesRef" class='circle'>
+            <div v-bind:key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlide}">
             </div>
         </div>
         <button class='slideButton' @click="slideRight()">
@@ -98,7 +98,7 @@ function slideRight() {
     pointer-events: none;
 
     &.hidden {
-      display: none;
+      visibility: hidden;
     }
   }
 
@@ -131,17 +131,23 @@ function slideRight() {
   .middleSection {
     height: 100%;
     display: flex;
+    justify-content: center;
     align-items: flex-end;
     flex-grow: 1;
+    z-index: 10;
   }
 }
 
 .circle {
   width: 10px;
   height: 10px;
-  background-color: #fff;
+  background-color: gray;
   border-radius: 10px;
   margin: 10px;
+
+  &.current {
+    background-color: white;
+  }
 }
 
 h1,
