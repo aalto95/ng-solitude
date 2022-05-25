@@ -35,7 +35,7 @@
     pointer-events: none;
 
     &.hidden {
-      display: none;
+      visibility: hidden;
     }
   }
 
@@ -68,17 +68,23 @@
   .middleSection {
     height: 100%;
     display: flex;
+    justify-content: center;
     align-items: flex-end;
     flex-grow: 1;
+    z-index: 10;
   }
 }
 
 .circle {
   width: 10px;
   height: 10px;
-  background-color: #fff;
+  background-color: gray;
   border-radius: 10px;
   margin: 10px;
+
+  &.current {
+    background-color: white;
+  }
 }
 
 h1,

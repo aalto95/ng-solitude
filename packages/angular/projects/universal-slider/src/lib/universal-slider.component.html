@@ -18,7 +18,12 @@
       </svg>        
     </button>
     <div class='middleSection' id="slider">
-        <div v-bind:key="slide.label" v-for="slide in slidesRef" class='circle'>
+        <div 
+          v-bind:key="slide.label" 
+          *ngFor="slide of slides; let i = index"
+          class='circle'
+          [ngClass]="activeSlide === i ? 'current' : ''"
+        >
         </div>
     </div>
     <button class='slideButton' (click)="slideRight()">
