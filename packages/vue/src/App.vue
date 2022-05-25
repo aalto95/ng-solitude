@@ -40,4 +40,10 @@ const mockData = [
   justify-content: center;
   align-items: center;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 </style>
