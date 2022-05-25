@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Slide } from '../interfaces/slide'
 import styles from './Slider.module.scss'
 import arrowRight from '../assets/right-svgrepo-com.svg'
@@ -10,15 +10,28 @@ interface SliderProps {
  
 const Slider: React.FC<SliderProps> = ({slides}) => {
   const [slideArray, setSlideArray] = useState<Slide[]>(slides)
+  const [currentSlideId, setCurrentSlideId] = useState<number>(0)
   const [whichDirection, setWhichDirection] = useState<string>('')
-  const handleSlideLeft = useCallback(() => {
+
+  const handleSlideLeft = () => {
     setSlideArray([slideArray[slideArray.length - 1], ...slideArray.slice(0, slideArray.length - 1)])
     setWhichDirection('left')
-  }, [slideArray])
-  const handleSlideRight = useCallback(() => {
+    if (currentSlideId > 0) {
+      setCurrentSlideId(prev => prev - 1)
+    } else {
+      setCurrentSlideId(slideArray.length - 1)
+    }
+  }
+
+  const handleSlideRight = () => {
     setSlideArray([...slideArray.slice(1), slideArray[0]])
     setWhichDirection('right')
-  }, [slideArray])
+    if (currentSlideId < slideArray.length - 1) {
+      setCurrentSlideId(prev => prev + 1)
+    } else {
+      setCurrentSlideId(0)
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -40,7 +53,7 @@ const Slider: React.FC<SliderProps> = ({slides}) => {
         </button>
         <div className={styles.middleSection} id="slider">
           {slideArray.map((slide, id) => (
-            <div key={id} className={styles.circle}>
+            <div key={id} className={`${styles.circle} ${id === currentSlideId ? styles.current : ''}`}>
               
             </div>
           ))}

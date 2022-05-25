@@ -65,16 +65,22 @@
     height: 100%;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     flex-grow: 1;
+    z-index: 1;
   }
 }
 
 .circle {
   width: 10px;
   height: 10px;
-  background-color: #fff;
+  background-color: gray;
   border-radius: 10px;
   margin: 10px;
+
+  &.current {
+    background-color: #fff;
+  }
 }
 
 h1,
