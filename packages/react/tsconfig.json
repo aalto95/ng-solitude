@@ -21,6 +21,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "react-slider/src"
+    "src",
   ]
 }
