@@ -31,8 +31,6 @@ function slideRight() {
 
 <template>
    <div class="container" v-if="slidesRef">
-      <div class='blocker'>
-      </div>
       <div class='slider'>
         <div 
           class="slide"
@@ -55,30 +53,21 @@ function slideRight() {
           <img src='../assets/right-icon.svg' alt="" class='arrow' />
         </button>
       </div>
-      <div class='blocker'>
-      </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
   width: 100vw;
-  height: 40vh;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.blocker {
-  height: 100%;
-  flex-grow: 1;
-  background-color: #fff;
-  z-index: 2;
-}
-
 .slider {
-  width: 60%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -90,7 +79,7 @@ function slideRight() {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
     height: 100%;
     position: absolute;
     background-position: center;
@@ -154,19 +143,4 @@ h1,
 p {
   color: #fff;
 }
-
-.slideFadingToLeft {
-  z-index: 1;
-  transition: 1s;
-  visibility: hidden;
-  transform: translateX(-100%);
-}
-
-.slideFadingToRight {
-  z-index: 1;
-  transition: 1s;
-  visibility: hidden;
-  transform: translateX(100%);
-}
-
 </style>
