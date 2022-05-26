@@ -10,8 +10,10 @@ const props = defineProps({
 const slidesRef = toRef(props, 'slides')
 
 const activeSlide = ref(0)
+const slideDirection = ref('')
 
 function slideLeft() {
+  slideDirection.value = 'left'
   if (activeSlide.value > 0) {
     activeSlide.value --
   } else {
@@ -20,6 +22,7 @@ function slideLeft() {
 }
 
 function slideRight() {
+  slideDirection.value = 'right'
   if (activeSlide.value < slidesRef.value.length - 1) {
     activeSlide.value ++
   } else {
@@ -27,10 +30,31 @@ function slideRight() {
   }
 }
 
+const listenToMouseDown = (e: MouseEvent) => {
+  setDownX(e.clientX)
+}
+
+const listenToTouchStart = (e: TouchEvent) => {
+  setDownX(e.touches[0].clientX)
+}
+
+const listenToMouseUp = (e: MouseEvent) => {
+  setUpX(e.clientX)
+}
+
+const listenToTouchEnd = (e: TouchEvent) => {
+  setUpX(e.changedTouches[0].clientX)
+}
+
 </script>
 
 <template>
-   <div class="container" v-if="slidesRef">
+   <div class="container" v-if="slidesRef"
+    @mousedown=""
+    @mouseup=""
+    @touchstart=""
+    @touchend=""
+   >
       <div class='slider'>
         <div 
           class="slide"
@@ -64,6 +88,8 @@ function slideRight() {
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow-x: hidden;
+  touch-action: none;
 }
 
 .slider {
