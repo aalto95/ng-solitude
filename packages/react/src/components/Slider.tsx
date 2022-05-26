@@ -9,26 +9,23 @@ interface SliderProps {
 }
  
 const Slider: React.FC<SliderProps> = ({slides}) => {
-  const [slideArray, setSlideArray] = useState<Slide[]>(slides)
   const [currentSlideId, setCurrentSlideId] = useState<number>(0)
-  const [whichDirection, setWhichDirection] = useState<string>('')
+  const [slideDirection, setSlideDirection] = useState<string>('')
   const [downX, setDownX] = useState(1)
   const [upX, setUpX] = useState(1)
 
-  const handleSlideLeft = () => {
-    setSlideArray([slideArray[slideArray.length - 1], ...slideArray.slice(0, slideArray.length - 1)])
-    setWhichDirection('left')
+  const slideLeft = () => {
+    setSlideDirection('left')
     if (currentSlideId > 0) {
       setCurrentSlideId(prev => prev - 1)
     } else {
-      setCurrentSlideId(slideArray.length - 1)
+      setCurrentSlideId(slides.length - 1)
     }
   }
 
-  const handleSlideRight = () => {
-    setSlideArray([...slideArray.slice(1), slideArray[0]])
-    setWhichDirection('right')
-    if (currentSlideId < slideArray.length - 1) {
+  const slideRight = () => {
+    setSlideDirection('right')
+    if (currentSlideId < slides.length - 1) {
       setCurrentSlideId(prev => prev + 1)
     } else {
       setCurrentSlideId(0)
@@ -53,9 +50,9 @@ const Slider: React.FC<SliderProps> = ({slides}) => {
 
   useEffect(() => {
     if (downX + 100 < upX) {
-      handleSlideLeft()
+      slideLeft()
     } else if (downX - 100 > upX) {
-      handleSlideRight()
+      slideRight()
     }
   }, [upX])
 
@@ -68,27 +65,26 @@ const Slider: React.FC<SliderProps> = ({slides}) => {
       onTouchEnd={(e => listenToTouchEnd(e))}
     >
       <div className={styles.slider}>
-        {slides.map((slide) => (
+        {slides.map((slide, idx) => (
           <div 
-            key={slide.image} 
-            className={`${styles.slide} ${slideArray[0] === slide ? '' : whichDirection === 'right' ? styles.slideFadingToLeft : styles.slideFadingToRight}`} 
+            key={slide.image}
             style={{backgroundImage: `url(${slide.image})`}}
+            className={`${styles.slide} ${currentSlideId === idx ? '' : slideDirection === 'right' ? styles.hideToLeft : styles.hideToRight}`} 
           >
             <h1>{slide.label}</h1>
             <p>{slide.paragraph}</p>
           </div>
         ))}
-        <button className={styles.slideButton} onClick={handleSlideLeft}>
+        <button className={styles.slideButton} onClick={slideLeft}>
         <img src={arrowLeft} alt="" className={styles.arrow} />
         </button>
         <div className={styles.middleSection} id="slider">
-          {slideArray.map((slide, id) => (
+          {slides.map((slide, id) => (
             <div key={id} className={`${styles.circle} ${id === currentSlideId ? styles.current : ''}`}>
-              
             </div>
           ))}
         </div>
-        <button className={styles.slideButton} onClick={handleSlideRight}>
+        <button className={styles.slideButton} onClick={slideRight}>
           <img src={arrowRight} alt="" className={styles.arrow} />
         </button>
       </div>
