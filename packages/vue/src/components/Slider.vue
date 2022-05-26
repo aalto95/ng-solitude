@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, toRef } from 'vue'
 
 const props = defineProps({
@@ -9,59 +9,75 @@ const props = defineProps({
 
 const slidesRef = toRef(props, 'slides')
 
-const activeSlide = ref(0)
+const activeSlideId = ref(0)
 const slideDirection = ref('')
+const downX = ref(1)
+const upX = ref(1)
 
 function slideLeft() {
   slideDirection.value = 'left'
-  if (activeSlide.value > 0) {
-    activeSlide.value --
+  if (activeSlideId.value > 0) {
+    activeSlideId.value --
   } else {
-    activeSlide.value = slidesRef.value.length - 1
+    activeSlideId.value = slidesRef.value.length - 1
   }
 }
 
 function slideRight() {
   slideDirection.value = 'right'
-  if (activeSlide.value < slidesRef.value.length - 1) {
-    activeSlide.value ++
+  if (activeSlideId.value < slidesRef.value.length - 1) {
+    activeSlideId.value ++
   } else {
-    activeSlide.value = 0
+    activeSlideId.value = 0
   }
 }
 
-const listenToMouseDown = (e: MouseEvent) => {
-  setDownX(e.clientX)
+function gesturedSlide() {
+  if (downX.value + 100 < upX.value) {
+    slideLeft();
+  } else if (downX.value > upX.value + 100) {
+    slideRight();
+  }
+}
+
+function listenToMouseDown(e: MouseEvent) {
+  console.log('yo')
+  downX.value = e.clientX
+}
+
+function listenToMouseUp(e: MouseEvent) {
+  upX.value = e.clientX
+  gesturedSlide()
 }
 
 const listenToTouchStart = (e: TouchEvent) => {
-  setDownX(e.touches[0].clientX)
-}
-
-const listenToMouseUp = (e: MouseEvent) => {
-  setUpX(e.clientX)
+  downX.value = e.touches[0].clientX
 }
 
 const listenToTouchEnd = (e: TouchEvent) => {
-  setUpX(e.changedTouches[0].clientX)
+  upX.value = e.changedTouches[0].clientX
+  gesturedSlide()
 }
 
 </script>
 
 <template>
    <div class="container" v-if="slidesRef"
-    @mousedown=""
-    @mouseup=""
-    @touchstart=""
-    @touchend=""
+    @mousedown="listenToMouseDown"
+    @mouseup="listenToMouseUp"
+    @touchstart="listenToTouchStart"
+    @touchend="listenToTouchEnd"
    >
       <div class='slider'>
         <div 
           class="slide"
-          v-for="(slide, index) in slidesRef"
+          v-for="(slide, idx) in slidesRef"
           :key="slide.label"
           :style="{ backgroundImage: `url(${slide.image})` }"
-          :class="{ hidden: activeSlide !== index }"
+          :class="{
+            hideToLeft: slideDirection === 'right' && activeSlideId !== idx, 
+            hideToRight: slideDirection === 'left' && activeSlideId !== idx
+          }"
         >
           <h1>{{slide.label}}</h1>
           <p>{{slide.paragraph}}</p>
@@ -70,7 +86,7 @@ const listenToTouchEnd = (e: TouchEvent) => {
           <img src='../assets/left-icon.svg' alt="" class='arrow' />
         </button>
         <div class='middleSection' id="slider">
-            <div v-bind:key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlide}">
+            <div v-bind:key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlideId}">
             </div>
         </div>
         <button class='slideButton' @click="slideRight()">
@@ -112,8 +128,18 @@ const listenToTouchEnd = (e: TouchEvent) => {
     background-size: cover;
     pointer-events: none;
 
-    &.hidden {
+    &.hideToRight {
+      z-index: 1;
+      transition: 1s;
       visibility: hidden;
+      transform: translateX(100%);
+    }
+
+    &.hideToLeft {
+      z-index: 1;
+      transition: 1s;
+      visibility: hidden;
+      transform: translateX(-100%);
     }
   }
 
