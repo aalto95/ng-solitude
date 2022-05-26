@@ -29,6 +29,20 @@
     background-position: center;
     background-size: cover;
     pointer-events: none;
+
+    &.hideToLeft {
+      z-index: 1;
+      transition: 1s;
+      visibility: hidden;
+      transform: translateX(-100%);
+    }
+
+    &.hideToRight {
+      z-index: 1;
+      transition: 1s;
+      visibility: hidden;
+      transform: translateX(100%);
+    }
   }
 
   .slideButton {
@@ -82,18 +96,4 @@
 h1,
 p {
   color: #fff;
-}
-
-.slideFadingToLeft {
-  z-index: 1;
-  transition: 1s;
-  visibility: hidden;
-  transform: translateX(-100%);
-}
-
-.slideFadingToRight {
-  z-index: 1;
-  transition: 1s;
-  visibility: hidden;
-  transform: translateX(100%);
 }
