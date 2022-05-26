@@ -35,9 +35,9 @@ export class UniversalSliderComponent implements OnInit {
   }
 
   gesturedSlide() {
-    if (this.downX + 50 < this.upX) {
+    if (this.downX + 100 < this.upX) {
       this.slideLeft();
-    } else if (this.downX > this.upX + 50) {
+    } else if (this.downX > this.upX + 100) {
       this.slideRight();
     }
   }

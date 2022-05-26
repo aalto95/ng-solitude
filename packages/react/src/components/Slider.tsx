@@ -12,8 +12,8 @@ const Slider: React.FC<SliderProps> = ({slides}) => {
   const [slideArray, setSlideArray] = useState<Slide[]>(slides)
   const [currentSlideId, setCurrentSlideId] = useState<number>(0)
   const [whichDirection, setWhichDirection] = useState<string>('')
-  const [mouseDownX, setMouseDownX] = useState(1)
-  const [mouseUpX, setMouseUpX] = useState(1)
+  const [downX, setDownX] = useState(1)
+  const [upX, setUpX] = useState(1)
 
   const handleSlideLeft = () => {
     setSlideArray([slideArray[slideArray.length - 1], ...slideArray.slice(0, slideArray.length - 1)])
@@ -35,50 +35,39 @@ const Slider: React.FC<SliderProps> = ({slides}) => {
     }
   }
 
-  const listenToMouseDown = (e: MouseEvent) => {
-    setMouseDownX(e.clientX)
+  const listenToMouseDown = (e: React.MouseEvent) => {
+    setDownX(e.clientX)
   }
 
-  const listenToTouchStart = (e: TouchEvent) => {
-    setMouseDownX(e.touches[0].clientX)
+  const listenToTouchStart = (e: React.TouchEvent) => {
+    setDownX(e.touches[0].clientX)
   }
 
-  const listenToMouseUp = (e: MouseEvent) => {
-    setMouseUpX(e.clientX)
+  const listenToMouseUp = (e: React.MouseEvent) => {
+    setUpX(e.clientX)
   }
 
-  const listenToTouchEnd = (e: TouchEvent) => {
-    setMouseUpX(e.changedTouches[0].clientX)
+  const listenToTouchEnd = (e: React.TouchEvent) => {
+    setUpX(e.changedTouches[0].clientX)
   }
 
   useEffect(() => {
-    if (mouseDownX + 100 < mouseUpX) {
+    if (downX + 100 < upX) {
       handleSlideLeft()
-    } else if (mouseDownX - 100 > mouseUpX) {
+    } else if (downX - 100 > upX) {
       handleSlideRight()
     }
-  }, [mouseUpX])
-
-  const sliderRef = React.useRef<any>();
-
-  useEffect(() => {
-    if (sliderRef && sliderRef.current) {
-      sliderRef.current.addEventListener('mousedown', (e: MouseEvent) => listenToMouseDown(e))
-      sliderRef.current.addEventListener('touchstart', (e: TouchEvent) => listenToTouchStart(e))
-      sliderRef.current.addEventListener('mouseup', (e: MouseEvent) => listenToMouseUp(e))
-      sliderRef.current.addEventListener('touchend', (e: TouchEvent) => listenToTouchEnd(e))
-    }
-    return () => {
-      sliderRef.current.removeEventListener('mousedown', (e: MouseEvent) => listenToMouseDown(e))
-      sliderRef.current.removeEventListener('touchstart', (e: TouchEvent) => listenToTouchStart(e))
-      sliderRef.current.removeEventListener('mouseup', (e: MouseEvent) => listenToMouseUp(e))
-      sliderRef.current.removeEventListener('touchend', (e: TouchEvent) => listenToTouchEnd(e))
-    }
-  }, [])
+  }, [upX])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.slider} ref={sliderRef}>
+    <div 
+      className={styles.container}
+      onMouseDown={(e) => listenToMouseDown(e)}
+      onMouseUp={(e) => listenToMouseUp(e)}
+      onTouchStart={(e => listenToTouchStart(e))}
+      onTouchEnd={(e => listenToTouchEnd(e))}
+    >
+      <div className={styles.slider}>
         {slides.map((slide) => (
           <div 
             key={slide.image} 
