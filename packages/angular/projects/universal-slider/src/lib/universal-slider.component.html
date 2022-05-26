@@ -1,10 +1,15 @@
-<div class="container" v-if="slidesRef">
+<div class="container"
+  (mousedown)="listenToMousedown($event)"
+  (mouseup)="listenToMouseup($event)"
+  (touchstart)="listenToTouchstart($event)"
+  (touchend)="listenToTouchend($event)"
+>
   <div class='slider'>
     <div 
       class="slide"
       *ngFor="let slide of slides; let i = index"
       [ngStyle]="{'background-image': 'url('+ slide.image + ')'}"
-      [ngClass]="activeSlide === i ? '' : 'hidden'"
+      [ngClass]="activeSlide === i ? '' : slideDirection === 'right' ? 'hideToLeft' : 'hideToRight'"
     >
       <h1>{{slide.label}}</h1>
       <p>{{slide.paragraph}}</p>
@@ -18,7 +23,7 @@
     <div class='middleSection' id="slider">
         <div 
           v-bind:key="slide.label" 
-          *ngFor="slide of slides; let i = index"
+          *ngFor="let slide of slides; let i = index"
           class='circle'
           [ngClass]="activeSlide === i ? 'current' : ''"
         >
