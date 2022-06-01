@@ -106,88 +106,88 @@ const listenToTouchEnd = (e: TouchEvent) => {
   position: relative;
   overflow-x: hidden;
   touch-action: none;
-}
 
-.slider {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-
-  .slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  .slider {
     width: 100%;
     height: 100%;
-    position: absolute;
-    background-position: center;
-    background-size: cover;
-    pointer-events: none;
-
-    &.hideToRight {
-      z-index: 1;
-      transition: 1s;
-      visibility: hidden;
-      transform: translateX(100%);
-    }
-
-    &.hideToLeft {
-      z-index: 1;
-      transition: 1s;
-      visibility: hidden;
-      transform: translateX(-100%);
-    }
-  }
-
-  .slideButton {
-    width: 10%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    transition: 0.5s;
-    z-index: 5;
+    overflow: hidden;
 
-    &:hover {
-      background-color: #fff;
-      opacity: 0.3;
-    }
-
-    .arrow {
-      width: 30px;
-      height: 30px;
+    .slide {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-position: center;
+      background-size: cover;
+      pointer-events: none;
+
+      &.hideToRight {
+        z-index: 1;
+        transition: 1s;
+        visibility: hidden;
+        transform: translateX(100%);
+      }
+
+      &.hideToLeft {
+        z-index: 1;
+        transition: 1s;
+        visibility: hidden;
+        transform: translateX(-100%);
+      }
     }
-  }
 
-  .middleSection {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-grow: 1;
-    z-index: 10;
-  }
-}
+    .slideButton {
+      width: 10%;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s;
+      z-index: 5;
 
-.circle {
-  width: 10px;
-  height: 10px;
-  background-color: gray;
-  border-radius: 10px;
-  margin: 10px;
+      &:hover {
+        background-color: #fff;
+        opacity: 0.3;
+      }
 
-  &.current {
-    background-color: white;
+      .arrow {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .middleSection {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-grow: 1;
+      z-index: 10;
+
+      .circle {
+        width: 10px;
+        height: 10px;
+        background-color: gray;
+        border-radius: 10px;
+        margin: 10px;
+
+        &.current {
+          background-color: white;
+        }
+      }
+    }
   }
 }
 
