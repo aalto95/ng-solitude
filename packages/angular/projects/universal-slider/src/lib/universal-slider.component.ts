@@ -12,25 +12,25 @@ export class UniversalSliderComponent implements OnInit {
   @Input()
   slides: Slide[] = [];
   slideDirection: string = '';
-  activeSlide: number = 0;
+  currentSlideId: number = 0;
   downX: number = 1;
   upX: number = 1;
 
   slideLeft() {
     this.slideDirection = 'left';
-    if (this.activeSlide > 0) {
-      this.activeSlide -= 1;
+    if (this.currentSlideId > 0) {
+      this.currentSlideId -= 1;
     } else {
-      this.activeSlide = this.slides.length - 1;
+      this.currentSlideId = this.slides.length - 1;
     }
   }
 
   slideRight() {
     this.slideDirection = 'right';
-    if (this.activeSlide < this.slides.length - 1) {
-      this.activeSlide += 1;
+    if (this.currentSlideId < this.slides.length - 1) {
+      this.currentSlideId += 1;
     } else {
-      this.activeSlide = 0;
+      this.currentSlideId = 0;
     }
   }
 

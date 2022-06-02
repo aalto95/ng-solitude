@@ -9,26 +9,26 @@ const props = defineProps({
 
 const slidesRef = toRef(props, 'slides')
 
-const activeSlideId = ref(0)
+const currentSlideId = ref(0)
 const slideDirection = ref('')
 const downX = ref(1)
 const upX = ref(1)
 
 function slideLeft() {
   slideDirection.value = 'left'
-  if (activeSlideId.value > 0) {
-    activeSlideId.value --
+  if (currentSlideId.value > 0) {
+    currentSlideId.value --
   } else {
-    activeSlideId.value = slidesRef.value.length - 1
+    currentSlideId.value = slidesRef.value.length - 1
   }
 }
 
 function slideRight() {
   slideDirection.value = 'right'
-  if (activeSlideId.value < slidesRef.value.length - 1) {
-    activeSlideId.value ++
+  if (currentSlideId.value < slidesRef.value.length - 1) {
+    currentSlideId.value ++
   } else {
-    activeSlideId.value = 0
+    currentSlideId.value = 0
   }
 }
 
