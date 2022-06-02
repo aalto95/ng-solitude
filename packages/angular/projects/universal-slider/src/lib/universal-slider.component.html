@@ -9,7 +9,7 @@
       class="slide"
       *ngFor="let slide of slides; let i = index"
       [ngStyle]="{'background-image': 'url('+ slide.image + ')'}"
-      [ngClass]="activeSlide === i ? '' : slideDirection === 'right' ? 'hideToLeft' : 'hideToRight'"
+      [ngClass]="currentSlideId === i ? '' : slideDirection === 'right' ? 'hideToLeft' : 'hideToRight'"
     >
       <h1>{{slide.label}}</h1>
       <p>{{slide.paragraph}}</p>
@@ -22,10 +22,9 @@
     </button>
     <div class='middleSection' id="slider">
         <div 
-          v-bind:key="slide.label" 
           *ngFor="let slide of slides; let i = index"
           class='circle'
-          [ngClass]="activeSlide === i ? 'current' : ''"
+          [ngClass]="currentSlideId === i ? 'current' : ''"
         >
         </div>
     </div>
