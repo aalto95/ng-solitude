@@ -74,8 +74,8 @@ const listenToTouchEnd = (e: TouchEvent) => {
           :key="slide.label"
           :style="{ backgroundImage: `url(${slide.image})` }"
           :class="{
-            hideToLeft: slideDirection === 'right' && activeSlideId !== idx, 
-            hideToRight: slideDirection === 'left' && activeSlideId !== idx
+            hideToLeft: slideDirection === 'right' && currentSlideId !== idx, 
+            hideToRight: slideDirection === 'left' && currentSlideId !== idx
           }"
         >
           <h1>{{slide.label}}</h1>
@@ -85,7 +85,7 @@ const listenToTouchEnd = (e: TouchEvent) => {
           <img src='../assets/left-icon.svg' alt="" class='arrow' />
         </button>
         <div class='middleSection' id="slider">
-            <div :key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlideId}">
+            <div :key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === currentSlideId}">
             </div>
         </div>
         <button class='slideButton' @click="slideRight()">
