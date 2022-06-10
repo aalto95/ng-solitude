@@ -41,7 +41,6 @@ function gesturedSlide() {
 }
 
 function listenToMouseDown(e: MouseEvent) {
-  console.log('yo')
   downX.value = e.clientX
 }
 
@@ -86,7 +85,7 @@ const listenToTouchEnd = (e: TouchEvent) => {
           <img src='../assets/left-icon.svg' alt="" class='arrow' />
         </button>
         <div class='middleSection' id="slider">
-            <div v-bind:key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlideId}">
+            <div :key="slide.label" v-for="(slide, index) in slidesRef" class='circle' :class="{current: index === activeSlideId}">
             </div>
         </div>
         <button class='slideButton' @click="slideRight()">
