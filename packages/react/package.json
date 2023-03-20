@@ -1,6 +1,6 @@
 {
   "name": "@universal-slider/react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "dependencies": {},
   "peerDependencies": {
     "react": "17.0.2"
