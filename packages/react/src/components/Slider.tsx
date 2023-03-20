@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import  './Slider.scss'
+import styles from './Slider.module.scss'
 import arrowRight from '../assets/right.svg'
 import arrowLeft from '../assets/left.svg'
 
@@ -61,34 +61,34 @@ export const Slider: React.FC<SliderProps> = ({slides}) => {
 
   return (
     <div 
-      className="container"
+      className={styles.container}
       onMouseDown={(e) => listenToMouseDown(e)}
       onMouseUp={(e) => listenToMouseUp(e)}
       onTouchStart={(e => listenToTouchStart(e))}
       onTouchEnd={(e => listenToTouchEnd(e))}
     >
-      <div className="slider">
+      <div className={styles.slider}>
         {slides.map((slide, idx) => (
           <div 
             key={slide.image}
             style={{backgroundImage: `url(${slide.image})`}}
-            className={`slide ${currentSlideId === idx ? '' : slideDirection === 'right' ? 'hideToLeft' : 'hideToRight'}`} 
+            className={`${styles.slide} ${currentSlideId === idx ? '' : slideDirection === 'right' ? styles.hideToLeft : styles.hideToRight}`} 
           >
             <h1>{slide.label}</h1>
             <p>{slide.paragraph}</p>
           </div>
         ))}
-        <button className="slideButton" onClick={slideLeft}>
-        <img src={arrowLeft} alt="left" className="arrow" />
+        <button className={styles.slideButton} onClick={slideLeft}>
+        <img src={arrowLeft} alt="left" className={styles.arrow} />
         </button>
-        <div className="middleSection" id="slider">
+        <div className={styles.middleSection} id="slider">
           {slides.map((slide, id) => (
-            <div key={id} className={`circle ${id === currentSlideId ? 'current' : ''}`}>
+            <div key={id} className={`${styles.circle} ${id === currentSlideId ? styles.current : ''}`}>
             </div>
           ))}
         </div>
-        <button className="slideButton" onClick={slideRight}>
-          <img src={arrowRight} alt="right" className="arrow" />
+        <button className={styles.slideButton} onClick={slideRight}>
+          <img src={arrowRight} alt="right" className={styles.arrow} />
         </button>
       </div>
     </div>
