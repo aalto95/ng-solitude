@@ -1,21 +1,69 @@
 {
-  "name": "universal-slider",
-  "workspaces": [
-    "./packages/*"
-  ],
-  "version": "0.0.1",
-  "description": "",
+  "name": "ng-solitude",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "ng run ng-solitude:storybook",
+    "build-storybook": "ng run ng-solitude:build-storybook",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aaltoo/universal-slider.git"
+  "peerDependencies": {
+    "@angular/animations": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/common": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/compiler": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/core": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/forms": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/platform-browser": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/platform-browser-dynamic": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@angular/router": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "rxjs": "^7.0.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.11.0 || ^0.12.0 || ^0.13.0"
   },
-  "author": "aaltoo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aaltoo/universal-slider/issues"
-  },
-  "homepage": "https://github.com/aaltoo/universal-slider#readme"
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.2.11",
+    "@angular-eslint/builder": "^14.4.0",
+    "@angular-eslint/eslint-plugin": "^14.4.0",
+    "@angular-eslint/eslint-plugin-template": "^14.4.0",
+    "@angular-eslint/schematics": "^14.4.0",
+    "@angular-eslint/template-parser": "^14.4.0",
+    "@angular/cli": "^14.2.11",
+    "@angular/compiler-cli": "^14.3.0",
+    "@angular/language-service": "^14.3.0",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.17.7",
+    "@compodoc/compodoc": "^1.1.19",
+    "@storybook/addon-actions": "^7.0.21",
+    "@storybook/addon-backgrounds": "^7.0.21",
+    "@storybook/addon-controls": "^7.0.21",
+    "@storybook/addon-docs": "^7.0.21",
+    "@storybook/addon-links": "^7.0.21",
+    "@storybook/addon-notes": "^5.3.21",
+    "@storybook/addon-storysource": "^7.0.21",
+    "@storybook/addons": "^7.0.21",
+    "@storybook/angular": "^7.0.21",
+    "@storybook/theming": "^7.0.21",
+    "@types/jasmine": "~3.10.0",
+    "@types/node": "^14.18.21",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.5",
+    "jasmine-core": "~3.10.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.1.0",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "ng-packagr": "^14.2.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "storybook": "^7.0.21",
+    "storybook-addon-designs": "^7.0.0-beta.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.6.4",
+    "webpack": "^5.73.0"
+  }
 }
