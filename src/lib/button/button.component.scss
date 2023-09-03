@@ -1,0 +1,209 @@
+:host {
+  &.sol-button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &--fill {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &-primary {
+      border: 2px solid #2f88f0;
+      background-color: #2f88f0;
+      color: white;
+
+      img {
+        filter: invert(99%) sepia(0%) saturate(1%) hue-rotate(207deg)
+          brightness(104%) contrast(100%);
+      }
+
+      &.sol-button--warning {
+        border: 2px solid #ff3055;
+        background-color: #ff3055;
+      }
+
+      &:hover {
+        border: 2px solid #2e7bd5;
+        background-color: #2e7bd5;
+
+        &.sol-button--warning {
+          border: 2px solid #df3052;
+          background-color: #df3052;
+        }
+      }
+
+      &:active {
+        border: 2px solid #2d6ebb;
+        background-color: #2d6ebb;
+
+        &.sol-button--warning {
+          border: 2px solid #be304e;
+          background-color: #be304e;
+        }
+      }
+
+      &:disabled {
+        border: 2px solid #c9dffb;
+        background-color: #c9dffb;
+
+        &.sol-button--warning {
+          border: 2px solid #ffa2b3;
+          background-color: #ffa2b3;
+        }
+      }
+    }
+
+    &-secondary {
+      border: 2px solid #ddebfd;
+      background-color: #ddebfd;
+      color: #2f88f0;
+
+      img {
+        filter: brightness(0) saturate(100%) invert(47%) sepia(27%)
+          saturate(3428%) hue-rotate(194deg) brightness(94%) contrast(99%);
+      }
+
+      &.sol-button--warning {
+        border: 2px solid #fce8ee;
+        background-color: #fce8ee;
+        color: #ff3055;
+
+        img {
+          filter: brightness(0) saturate(100%) invert(30%) sepia(32%)
+            saturate(5182%) hue-rotate(331deg) brightness(102%) contrast(101%);
+        }
+      }
+
+      &:hover {
+        border: 2px solid #c9dffb;
+        background-color: #c9dffb;
+
+        &.sol-button--warning {
+          border: 2px solid #ffd6dd;
+          background-color: #ffd6dd;
+          color: #ff3055;
+        }
+      }
+
+      &:active {
+        border: 2px solid #ddebfd;
+        background-color: #ddebfd;
+
+        &.sol-button--warning {
+          border: 2px solid #fce8ee;
+          background-color: #fce8ee;
+          color: #ff3055;
+        }
+      }
+
+      &:disabled {
+        color: #96c2f7;
+
+        img {
+          filter: brightness(0) saturate(100%) invert(70%) sepia(54%)
+            saturate(375%) hue-rotate(183deg) brightness(96%) contrast(101%);
+        }
+
+        &.sol-button--warning {
+          border: 2px solid #fce8ee;
+          background-color: #fce8ee;
+          color: #ffa2b3;
+        }
+      }
+    }
+
+    &-outline {
+      border: 2px solid #2f88f0;
+      background: none;
+      color: #2f88f0;
+
+      img {
+        filter: invert(39%) sepia(100%) saturate(2107%) hue-rotate(198deg)
+          brightness(103%) contrast(88%);
+      }
+
+      &.sol-button--warning {
+        border: 2px solid #ff3055;
+        color: #ff3055;
+
+        img {
+          filter: brightness(0) saturate(100%) invert(30%) sepia(32%)
+            saturate(5182%) hue-rotate(331deg) brightness(102%) contrast(101%);
+        }
+      }
+
+      &:hover {
+        border: 2px solid #2e7bd5;
+        color: #2e7bd5;
+
+        img {
+          filter: invert(44%) sepia(76%) saturate(709%) hue-rotate(178deg)
+            brightness(85%) contrast(96%);
+        }
+
+        &.sol-button--warning {
+          border: 2px solid #df3052;
+          color: #df3052;
+
+          img {
+            filter: brightness(0) saturate(100%) invert(25%) sepia(51%)
+              saturate(3836%) hue-rotate(332deg) brightness(93%) contrast(88%);
+          }
+        }
+      }
+
+      &:active {
+        border: 2px solid #2d6ebb;
+        color: #2d6ebb;
+
+        img {
+          filter: invert(37%) sepia(14%) saturate(4722%) hue-rotate(185deg)
+            brightness(94%) contrast(83%);
+        }
+
+        &.sol-button--warning {
+          border: 2px solid #be304e;
+          color: #be304e;
+
+          img {
+            filter: brightness(0) saturate(100%) invert(22%) sepia(87%)
+              saturate(2138%) hue-rotate(328deg) brightness(85%) contrast(84%);
+          }
+        }
+      }
+
+      &:disabled {
+        img {
+          filter: brightness(0) saturate(100%) invert(56%) sepia(43%)
+            saturate(726%) hue-rotate(176deg) brightness(98%) contrast(94%);
+        }
+
+        &.sol-button--warning {
+          border: 2px solid #ffa2b3;
+          color: #ffa2b3;
+
+          img {
+            filter: brightness(0) saturate(100%) invert(64%) sepia(6%)
+              saturate(2241%) hue-rotate(301deg) brightness(109%) contrast(114%);
+          }
+        }
+      }
+    }
+  }
+}
