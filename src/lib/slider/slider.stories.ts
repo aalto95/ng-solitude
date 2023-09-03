@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
 import { SliderComponent } from './slider.component';
+import { html } from 'code-tag';
 
 const meta: Meta<SliderComponent> = {
   title: 'Components/Slider',
@@ -25,10 +25,7 @@ export default meta;
 
 export const Default: StoryObj<SliderComponent> = {
   render: (args, context) => ({
-    template: `
-      <sol-slider [slides]="slides"
-      ></sol-slider>
-    `,
+    template: html`<sol-slider [slides]="slides"></sol-slider>`,
     props: {
       ...context.initialArgs,
       ...args,
