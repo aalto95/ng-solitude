@@ -48,3 +48,23 @@ export const Default: StoryObj<ButtonComponent> = {
   }),
   args: {},
 };
+
+export const Disabled: StoryObj<ButtonComponent> = {
+  render: (args, context) => ({
+    template: html`<button
+      sol-button
+      [fill]="fill"
+      [warning]="warning"
+      [variant]="variant"
+      [iconSource]="iconSource"
+      disabled
+    >
+      Кнопка
+    </button>`,
+    props: {
+      ...context.initialArgs,
+      ...args,
+    },
+  }),
+  args: {},
+};
