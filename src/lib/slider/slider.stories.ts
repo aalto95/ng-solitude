@@ -14,10 +14,19 @@ const meta: Meta<SliderComponent> = {
 
 const slides = [
   {
-    label: 'Label 1',
-    paragraph: 'Paragraph 1',
+    label: 'Himeno',
+    paragraph: 'is best girl',
+    image: 'https://wegotthiscovered.com/wp-content/uploads/2022/11/himeno.jpg',
+  },
+  {
+    label: 'It gets lonely',
+    paragraph: 'at the top',
     image:
-      'https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci8yZGQxMmY4MjcxNzc3ZTMxMDc1NWIxMjNjM2U4M2I2ND9zaXplPTQ5NiZkZWZhdWx0PXJldHJvIn0.3aUNpksrz3VtIOjV67WWRZRnUvlNHmvVRlSxPY0CfSs',
+      'https://mountainhouse.com/cdn/shop/articles/denali-national-park-in-alaska-feature-image-min_1024x.jpg?v=1624973320',
+  },
+  {
+    label: 'All I know is grind',
+    image: 'https://medialeaks.ru/wp-content/uploads/2023/01/sajt-dasha-4.jpg',
   },
 ];
 

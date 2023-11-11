@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export interface Slide {
   label: string;
-  paragraph: string;
+  paragraph?: string;
   image: string;
 }
 
