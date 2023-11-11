@@ -1,5 +1,5 @@
 /*
- * Public API Surface of universal-slider
+ * Public API Surface of ng-solitude
  */
 export * from './lib/ng-solitude.module';
 
