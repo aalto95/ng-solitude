@@ -9,6 +9,7 @@ const meta: Meta<ButtonComponent> = {
   args: {
     fill: false,
     warning: false,
+    loading: false,
     variant: 'primary',
     iconSource: {
       left: './icons/cap.svg',
@@ -75,6 +76,26 @@ export const WithIcons: StoryObj<ButtonComponent> = {
       [warning]="warning"
       [variant]="variant"
       [iconSource]="iconSource"
+      [loading]="loading"
+    >
+      Кнопка
+    </button>`,
+    props: {
+      ...context.initialArgs,
+      ...args,
+    },
+  }),
+  args: {},
+};
+
+export const Loading: StoryObj<ButtonComponent> = {
+  render: (args, context) => ({
+    template: html`<button
+      sol-button
+      [fill]="fill"
+      [warning]="warning"
+      [variant]="variant"
+      [loading]="true"
     >
       Кнопка
     </button>`,

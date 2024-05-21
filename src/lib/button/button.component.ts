@@ -10,6 +10,7 @@ export class ButtonComponent implements OnInit {
 
   @Input() fill = false;
   @Input() warning = false;
+  @Input() loading = false;
   @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';
   @Input() iconSource = {
     left: '',
@@ -26,6 +27,11 @@ export class ButtonComponent implements OnInit {
   @HostBinding('class.sol-button--warning')
   private get isWarning(): boolean {
     return this.warning;
+  }
+
+  @HostBinding('class.sol-button--loading')
+  private get isLoading(): boolean {
+    return this.loading;
   }
 
   @HostBinding('class.sol-button-primary')
