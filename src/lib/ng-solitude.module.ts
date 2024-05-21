@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-
+import { ButtonModule } from './button/button.module';
 import { SliderModule } from './slider/slider.module';
-import { ButtonComponent } from './button/button.component';
 
 @NgModule({
-  declarations: [
-    ButtonComponent
-  ],
-  imports: [SliderModule],
-  exports: [SliderModule],
+  imports: [ButtonModule, SliderModule],
+  exports: [ButtonModule, SliderModule],
 })
 export class NgSolitudeModule {}
