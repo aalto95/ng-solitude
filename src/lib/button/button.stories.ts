@@ -37,7 +37,6 @@ export const Default: StoryObj<ButtonComponent> = {
       [fill]="fill"
       [warning]="warning"
       [variant]="variant"
-      [iconSource]="iconSource"
     >
       Кнопка
     </button>`,
@@ -56,8 +55,26 @@ export const Disabled: StoryObj<ButtonComponent> = {
       [fill]="fill"
       [warning]="warning"
       [variant]="variant"
-      [iconSource]="iconSource"
       disabled
+    >
+      Кнопка
+    </button>`,
+    props: {
+      ...context.initialArgs,
+      ...args,
+    },
+  }),
+  args: {},
+};
+
+export const WithIcons: StoryObj<ButtonComponent> = {
+  render: (args, context) => ({
+    template: html`<button
+      sol-button
+      [fill]="fill"
+      [warning]="warning"
+      [variant]="variant"
+      [iconSource]="iconSource"
     >
       Кнопка
     </button>`,
