@@ -1,3 +1,5 @@
 <img *ngIf="iconSource.left" [src]="iconSource.left" alt="left-icon" />
-<ng-content></ng-content>
+<span class="sol-button__text">
+  <ng-content></ng-content>
+</span>
 <img *ngIf="iconSource.right" [src]="iconSource.right" alt="right-icon" />

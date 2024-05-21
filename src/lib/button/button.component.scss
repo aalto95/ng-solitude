@@ -9,6 +9,10 @@
     align-items: center;
     gap: 8px;
 
+    &__text {
+      line-height: 24px;
+    }
+
     img {
       width: 24px;
       height: 24px;
