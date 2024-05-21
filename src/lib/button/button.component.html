@@ -1,5 +1,11 @@
-<img *ngIf="iconSource.left" [src]="iconSource.left" alt="left-icon" />
-<span class="sol-button__text">
-  <ng-content></ng-content>
-</span>
-<img *ngIf="iconSource.right" [src]="iconSource.right" alt="right-icon" />
+<div
+  class="sol-button__content"
+  [ngClass]="{ 'sol-button__content--invisible': loading }"
+>
+  <img *ngIf="iconSource.left" [src]="iconSource.left" alt="left-icon" />
+  <span class="sol-button__text">
+    <ng-content></ng-content>
+  </span>
+  <img *ngIf="iconSource.right" [src]="iconSource.right" alt="right-icon" />
+</div>
+<span class="sol-button__loader" *ngIf="loading"></span>
