@@ -7,9 +7,10 @@ export interface Slide {
 }
 
 @Component({
-  selector: 'sol-slider',
-  templateUrl: 'slider.component.html',
-  styleUrls: ['slider.component.scss'],
+    selector: 'sol-slider',
+    templateUrl: 'slider.component.html',
+    styleUrls: ['slider.component.scss'],
+    standalone: false
 })
 export class SliderComponent implements OnInit {
   constructor() {}

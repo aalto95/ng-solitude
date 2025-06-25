@@ -1,9 +1,10 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'button[sol-button]',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+    selector: 'button[sol-button]',
+    templateUrl: './button.component.html',
+    styleUrls: ['./button.component.scss'],
+    standalone: false
 })
 export class ButtonComponent implements OnInit {
   constructor() {}
