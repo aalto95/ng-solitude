@@ -4,30 +4,32 @@
   (mouseup)="listenToMouseup($event)"
   (touchstart)="listenToTouchstart($event)"
   (touchend)="listenToTouchend($event)"
->
+  >
   <div
     class="slider__slide-container"
     [ngStyle]="{
       transform: 'translateX(calc(-100% * ' + currentSlideId + '))'
     }"
-  >
-    <div
-      class="slider__slide"
-      *ngFor="let slide of slides; let i = index"
-      [ngStyle]="{ 'background-image': 'url(' + slide.image + ')' }"
     >
-      <h1>{{ slide.label }}</h1>
-      <p>{{ slide.paragraph }}</p>
-    </div>
+    @for (slide of slides; track slide; let i = $index) {
+      <div
+        class="slider__slide"
+        [ngStyle]="{ 'background-image': 'url(' + slide.image + ')' }"
+        >
+        <h1>{{ slide.label }}</h1>
+        <p>{{ slide.paragraph }}</p>
+      </div>
+    }
   </div>
 
   <div class="slider__dot-navigation">
-    <div
-      *ngFor="let slide of slides; let i = index"
-      class="slider__dot"
-      [ngClass]="currentSlideId === i ? 'slider__dot--active' : ''"
-      (click)="currentSlideId = i"
-    ></div>
+    @for (slide of slides; track slide; let i = $index) {
+      <div
+        class="slider__dot"
+        [ngClass]="currentSlideId === i ? 'slider__dot--active' : ''"
+        (click)="currentSlideId = i"
+      ></div>
+    }
   </div>
 
   <button class="slider__btn slider__btn--left" (click)="slideLeft()">
