@@ -3,5 +3,10 @@ import docJson from '../documentation.json';
 setCompodocJson(docJson);
 
 export const parameters = {
-  controls: { expanded: true }
+  controls: { expanded: true },
+
+  docs: {
+    codePanel: true
+  }
 };
+export const tags = ['autodocs'];
