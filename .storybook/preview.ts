@@ -1,12 +1,13 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../documentation.json';
+import { Preview } from '@storybook/angular'
 setCompodocJson(docJson);
 
-export const parameters = {
+const preview: Preview = {
+  parameters: {
   controls: { expanded: true },
-
-  docs: {
-    codePanel: true
-  }
+  },
+  tags: ['autodocs']
 };
-export const tags = ['autodocs'];
+
+export default preview;
