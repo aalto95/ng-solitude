@@ -44,16 +44,10 @@
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
     "@compodoc/compodoc": "^1.1.19",
-    "@storybook/addon-actions": "^7.0.21",
-    "@storybook/addon-backgrounds": "^7.0.21",
-    "@storybook/addon-controls": "^7.0.21",
     "@storybook/addon-docs": "^7.0.21",
     "@storybook/addon-links": "^7.0.21",
-    "@storybook/addon-notes": "^5.3.21",
-    "@storybook/addon-storysource": "^7.0.21",
-    "@storybook/addons": "^7.0.21",
+
     "@storybook/angular": "^7.0.21",
-    "@storybook/theming": "^7.0.21",
     "@types/jasmine": "~3.10.0",
     "code-tag": "^1.1.0",
     "jasmine-core": "~3.10.0",
@@ -66,7 +60,6 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "storybook": "^7.0.21",
-    "storybook-addon-designs": "^7.0.0-beta.2",
     "typescript": "^5.4.5"
   }
 }
