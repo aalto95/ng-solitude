@@ -9,14 +9,25 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "ng-solitude": ["dist/ng-solitude/ng-solitude", "dist/ng-solitude"]
+      "ng-solitude": [
+        "dist/ng-solitude/ng-solitude",
+        "dist/ng-solitude"
+      ]
     },
     "allowSyntheticDefaultImports": true,
-    "plugins": [{ "name": "@angular/language-service" }]
+    "plugins": [
+      {
+        "name": "@angular/language-service"
+      }
+    ],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictTemplates": true
