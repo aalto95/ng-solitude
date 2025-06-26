@@ -1,6 +1,6 @@
 {
   "name": "ng-solitude",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "storybook": "ng run ng-solitude:storybook",
     "build-storybook": "ng run ng-solitude:build-storybook",
