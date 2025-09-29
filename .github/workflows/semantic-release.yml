@@ -35,23 +35,143 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          semantic_version: 21
-          extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Get current version from master
+        id: current-version
+        run: |
+          # Get the current version from package.json
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Current version in package.json: $CURRENT_VERSION"
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if version exists on npm
+        id: check-npm-version
+        run: |
+          CURRENT_VERSION="${{ steps.current-version.outputs.version }}"
+          echo "Checking if version $CURRENT_VERSION exists on npm..."
+
+          if npm view ng-solitude@$CURRENT_VERSION version >/dev/null 2>&1; then
+            echo "Version $CURRENT_VERSION already exists on npm"
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "Version $CURRENT_VERSION does not exist on npm"
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Use user-determined version
+        id: use-version
+        if: steps.check-npm-version.outputs.should_publish == 'true'
+        run: |
+          USER_VERSION="${{ steps.current-version.outputs.version }}"
+          echo "Using user-determined version: $USER_VERSION"
+          echo "version=v$USER_VERSION" >> $GITHUB_OUTPUT
+          echo "version_number=$USER_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update package.json in dist
+        if: steps.check-npm-version.outputs.should_publish == 'true'
+        run: |
+          # Copy the updated package.json to dist
+          cp package.json dist/ng-solitude/
+          cp package-lock.json dist/ng-solitude/ 2>/dev/null || true
 
       - name: Publish to npm
-        if: steps.semantic-release.outputs.new-release-published == 'true'
+        if: steps.check-npm-version.outputs.should_publish == 'true'
         run: |
           cd dist/ng-solitude
-          # Copy package.json with new version
-          cp ../../package.json .
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create Git tag
+        if: steps.check-npm-version.outputs.should_publish == 'true'
+        run: |
+          git tag -a "${{ steps.use-version.outputs.version }}" -m "Release ${{ steps.use-version.outputs.version }}"
+          git push origin "${{ steps.use-version.outputs.version }}"
+
+      - name: Create GitHub Release
+        if: steps.check-npm-version.outputs.should_publish == 'true'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.use-version.outputs.version }}
+          release_name: Release ${{ steps.use-version.outputs.version }}
+          body: |
+            ## Changes in ${{ steps.use-version.outputs.version }}
+
+            This release was automatically created from commit ${{ github.sha }}.
+
+            **Version:** ${{ steps.use-version.outputs.version_number }}
+
+            **Commit Message:** $(git log -1 --pretty=%B)
+          draft: false
+          prerelease: false
+
+      - name: Skip publish (version already exists)
+        if: steps.check-npm-version.outputs.should_publish == 'false'
+        run: |
+          echo "Version ${{ steps.current-version.outputs.version }} already exists on npm, skipping publish"
+
+  merge-to-development:
+    name: Merge Master to Development
+    runs-on: ubuntu-latest
+    needs: release
+    # Only run if the release job completed successfully
+    if: always() && needs.release.result == 'success'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Check if development branch exists
+        id: check-dev-branch
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/development; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Development branch exists"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Development branch does not exist"
+          fi
+
+      - name: Merge master to development
+        if: steps.check-dev-branch.outputs.exists == 'true'
+        run: |
+          # Fetch all branches
+          git fetch origin
+
+          # Checkout development branch
+          git checkout development
+
+          # Merge master into development
+          git merge origin/master --no-edit
+
+          # Push the merged changes
+          git push origin development
+
+          echo "Successfully merged master to development"
+
+      - name: Create development branch if it doesn't exist
+        if: steps.check-dev-branch.outputs.exists == 'false'
+        run: |
+          # Create development branch from master
+          git checkout -b development
+
+          # Push the new development branch
+          git push origin development
+
+          echo "Created development branch from master"
+
+      - name: Skip merge (development branch not needed)
+        if: steps.check-dev-branch.outputs.exists == 'false'
+        run: |
+          echo "Development branch does not exist and was not created. Skipping merge."
