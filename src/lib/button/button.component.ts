@@ -1,10 +1,10 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'button[sol-button]',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: false
+  selector: 'button[sol-button]',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  standalone: false
 })
 export class ButtonComponent implements OnInit {
   constructor() {}
@@ -15,7 +15,7 @@ export class ButtonComponent implements OnInit {
   @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';
   @Input() iconSource = {
     left: '',
-    right: '',
+    right: ''
   };
 
   @HostBinding('class.sol-button') private button = true;
