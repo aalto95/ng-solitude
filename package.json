@@ -1,7 +1,6 @@
 {
   "name": "ng-solitude",
   "version": "0.2.0",
-  "type": "module",
   "scripts": {
     "storybook": "ng run ng-solitude:storybook",
     "build-storybook": "ng run ng-solitude:build-storybook",
@@ -11,8 +10,8 @@
     "build:styles": "sass --no-source-map src/styles/styles.scss dist/ng-solitude/styles.css",
     "build:publish": "npm run build && npm run publish",
     "test": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
-    "lint": "eslint ./src/*.{js,ts,html}",
-    "lint:fix": "eslint ./src/*.{js,ts,html} --fix",
+    "lint": "eslint ./src/*.{js,ts,css,scss,html}",
+    "lint:fix": "eslint ./src/*.{js,ts,css,scss,html} --fix",
     "publish": "cd ./dist/ng-solitude/ && npm publish"
   },
   "repository": {
