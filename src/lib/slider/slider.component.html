@@ -4,18 +4,18 @@
   (mouseup)="listenToMouseup($event)"
   (touchstart)="listenToTouchstart($event)"
   (touchend)="listenToTouchend($event)"
-  >
+>
   <div
     class="slider__slide-container"
     [ngStyle]="{
       transform: 'translateX(calc(-100% * ' + currentSlideId + '))'
     }"
-    >
+  >
     @for (slide of slides; track slide; let i = $index) {
       <div
         class="slider__slide"
         [ngStyle]="{ 'background-image': 'url(' + slide.image + ')' }"
-        >
+      >
         <h1>{{ slide.label }}</h1>
         <p>{{ slide.paragraph }}</p>
       </div>
