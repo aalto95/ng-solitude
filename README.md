@@ -3,3 +3,5 @@
 ## Angular Component Library
 
 ### Built in solitude
+
+This is a library of cool Angular components
