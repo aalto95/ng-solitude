@@ -13,20 +13,20 @@ const meta: Meta<ButtonComponent> = {
     variant: 'primary',
     iconSource: {
       left: './icons/cap.svg',
-      right: './icons/download.svg',
-    },
+      right: './icons/download.svg'
+    }
   },
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline'],
-    },
+      options: ['primary', 'secondary', 'outline']
+    }
   },
   decorators: [
     moduleMetadata({
-      declarations: [ButtonComponent],
-    }),
-  ],
+      declarations: [ButtonComponent]
+    })
+  ]
 };
 
 export default meta;
@@ -43,10 +43,10 @@ export const Default: StoryObj<ButtonComponent> = {
     </button>`,
     props: {
       ...context.initialArgs,
-      ...args,
-    },
+      ...args
+    }
   }),
-  args: {},
+  args: {}
 };
 
 export const Disabled: StoryObj<ButtonComponent> = {
@@ -62,10 +62,10 @@ export const Disabled: StoryObj<ButtonComponent> = {
     </button>`,
     props: {
       ...context.initialArgs,
-      ...args,
-    },
+      ...args
+    }
   }),
-  args: {},
+  args: {}
 };
 
 export const WithIcons: StoryObj<ButtonComponent> = {
@@ -82,10 +82,10 @@ export const WithIcons: StoryObj<ButtonComponent> = {
     </button>`,
     props: {
       ...context.initialArgs,
-      ...args,
-    },
+      ...args
+    }
   }),
-  args: {},
+  args: {}
 };
 
 export const Loading: StoryObj<ButtonComponent> = {
@@ -101,8 +101,8 @@ export const Loading: StoryObj<ButtonComponent> = {
     </button>`,
     props: {
       ...context.initialArgs,
-      ...args,
-    },
+      ...args
+    }
   }),
-  args: {},
+  args: {}
 };
