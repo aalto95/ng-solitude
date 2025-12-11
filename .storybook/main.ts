@@ -1,15 +1,12 @@
 module.exports = {
-  stories: ["../src/**/**/*.stories.ts"],
+  stories: ['../src/**/**/*.stories.ts'],
 
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-docs"
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-docs'],
 
   framework: {
-    name: "@storybook/angular",
+    name: '@storybook/angular',
     options: {}
   },
 
-  staticDirs: ["../src/assets", "./assets"]
+  staticDirs: ['../src/assets', './assets']
 };
